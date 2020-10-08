@@ -28,17 +28,7 @@ export default {
     }
   },
   async  created(){
-                 this.post = await postsService.getAPost(this.$route.params.id)
-           console.log(this.post);
-       
-   },
-   methods: {
-       getPost(){
-           
-           
-
-           
-       }
+        this.post = await postsService.getAPost(this.$route.params.id)
    }
 
 
