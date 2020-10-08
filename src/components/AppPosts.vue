@@ -1,16 +1,32 @@
 <template>
   <div class="hello">
     <h1>Posts</h1>
-
+  <table>
+    <tr>
+      <th>title</th>
+      <th>text</th>
+    </tr>
+    <tr v-for="post in posts" :key="post.id">
+      <td>{{post.title}}</td>
+      <td>{{post.text}}</td>
+    </tr>
+  </table>
   </div>
 </template>
 
 <script>
+import {postsService} from '../services/PostsService'
 export default {
   name: 'AppPosts',
-  props: {
-    msg: String
-  }
+  data(){
+    return {
+      posts: []
+    }
+  },
+  async created() {
+    this.posts = await postsService.getPosts()
+  },
+
 }
 </script>
 
