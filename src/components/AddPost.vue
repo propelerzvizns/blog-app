@@ -22,14 +22,19 @@
    
     </form> 
     <button @click="resetFrom" type="submit" class="btn btn-primary">reset form</button>
+
+    <AddComponent></AddComponent>
   </div>
 </template>
 
 <script>
+import AddComponent from './AddComment'
 import {postsService} from '../services/PostsService'
 export default {
   name: 'AddPost',
- 
+ components: {
+     AddComponent
+ },
   data(){
     return {
        post: {
@@ -40,7 +45,10 @@ export default {
     }
   },
  async created(){
-    this.post = await postsService.getAPost(this.$route.params.id)
+     if(this.$route.params.id){
+
+         this.post = await postsService.getAPost(this.$route.params.id)
+     }
 
   },
   methods: {
