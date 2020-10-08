@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import AppPosts from '../components/AppPosts.vue'
 import SinglePost from '../components/SinglePost.vue'
 import AddPost from '../components/AddPost.vue'
+// import EditPost from '../components/EditPost.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [
   {
     path: '/add',
     name: 'add-post',
+    component: AddPost
+  },
+  {
+    path: '/edit/:id',
+    name: 'edit-post',
     component: AddPost
   },
 

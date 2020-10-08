@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="posts">
     <h1>Posts</h1>
   <table>
     <tr>
@@ -12,6 +12,9 @@
       <td>{{post.text}}</td>
       <td>
         <router-link :to="{ name: 'post', params: { id: post.id }}">View Post</router-link>
+      </td>
+      <td>
+        <router-link :to="{ name: 'edit-post', params: { id: post.id }}">Edit Post</router-link>
       </td>
     </tr>
   </table>
@@ -29,7 +32,11 @@ export default {
   },
   async created() {
     this.posts = await postsService.getPosts()
+
   },
+  methods: {
+
+  }
 
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <div class="addPost">
+  <div class="edit">
     <h1>Post</h1>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="edit">
         
     <div class="form-group">
         <label for="title">Title</label>
@@ -12,62 +12,40 @@
         <label for="text">Text</label>
         <textarea class="form-control" id="body" rows="3" v-model="post.text" required maxlength="300"></textarea>
     </div>
-    <div v-if="post.id"> 
-        <button type="submit" class="btn btn-primary">Edit Post</button>
-    </div>
 
-    <div v-else>
-        <button type="submit" class="btn btn-primary">Add Post</button>
-    </div>
-   
+    <button type="submit" class="btn btn-primary">Edit Post</button>
     </form> 
-    <button @click="resetFrom" type="submit" class="btn btn-primary">reset form</button>
+
   </div>
 </template>
 
 <script>
 import {postsService} from '../services/PostsService'
 export default {
-  name: 'AddPost',
+  name: 'EditPost',
  
   data(){
     return {
        post: {
+           
            text: '',
            title: ''
        }
 
     }
   },
- async created(){
+async  created(){
     this.post = await postsService.getAPost(this.$route.params.id)
-
   },
   methods: {
- 
-    resetFrom(){
-        this.post= {}
+      edit(){
+          
+          postsService.editAPost(this.post);
+        //   this.$router.push('posts')
+      }
 
-    },
-    editPost(){
-        postsService.editAPost(this.post)
-        console.log(this.$router)
-        this.$router.push({ name: 'posts' })
-
-    },
-    addPost(){
-        postsService.addAPost(this.post);
-        this.$router.push('posts')
-    },
-    onSubmit(){
-        if(this.$route.params.id){
-            this.editPost()
-        } 
-        else {
-            this.addPost();
-        }
-    }
   }
+
 
 
 }

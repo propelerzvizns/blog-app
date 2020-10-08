@@ -9,13 +9,20 @@ export default class PostsService {
     async  getAPost(id){
 
     const {data} =  await   axios.get('http://localhost:3000/api/posts/' + id)
+   
         return data
         
     }
-    addPost(data){
+    addAPost(data){
         axios.post('http://localhost:3000/api/posts', data)
         
     }
+    editAPost(data){
+        axios.put('http://localhost:3000/api/posts/', data)
+        
+        
+    }
+    
 
 }
 
