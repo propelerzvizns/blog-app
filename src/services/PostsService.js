@@ -18,8 +18,13 @@ export default class PostsService {
         
     }
     editAPost(data){
-        axios.put('http://localhost:3000/api/posts/', data)
+        axios.put('http://localhost:3000/api/posts', data)
         
+        
+    }
+    deleteAPost(data){
+        
+       return axios.delete(`http://localhost:3000/api/posts/${data.id}`, data)
         
     }
     

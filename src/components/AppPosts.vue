@@ -16,6 +16,10 @@
       <td>
         <router-link :to="{ name: 'edit-post', params: { id: post.id }}">Edit Post</router-link>
       </td>
+      <td>
+        <!-- <router-link :to="{ name: 'delete-post', params: { id: post.id }}">Delete Post</router-link> -->
+        <button @click="deletePost(post)">delete Post</button>
+      </td>
     </tr>
   </table>
   </div>
@@ -35,7 +39,11 @@ export default {
 
   },
   methods: {
-
+    deletePost(post){
+      postsService.deleteAPost(post).then(async () => {
+        this.posts = await postsService.getPosts()
+      })
+    }
   }
 
 }
