@@ -5,12 +5,12 @@
         
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title"  placeholder="Enter title" v-model="post.title" required>
+        <input type="text" class="form-control" id="title"  placeholder="Enter title" v-model="post.title" required minlength="2">
 
     </div>
     <div class="form-group">
         <label for="text">Text</label>
-        <textarea class="form-control" id="body" rows="3" v-model="post.text" required></textarea>
+        <textarea class="form-control" id="body" rows="3" v-model="post.text" required maxlength="300"></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary">Add Post</button>
