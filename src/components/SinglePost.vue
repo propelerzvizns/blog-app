@@ -1,18 +1,16 @@
 <template>
   <div class="hello">
-    <h1>Posts</h1>
+    <h1>Post</h1>
   <table>
     <tr>
       <th>title</th>
       <th>text</th>
       <th></th>
     </tr>
-    <tr v-for="post in posts" :key="post.id">
+    <tr>
       <td>{{post.title}}</td>
       <td>{{post.text}}</td>
-      <td>
-        <router-link :to="{ name: 'post', params: { id: post.id }}">View Post</router-link>
-      </td>
+
     </tr>
   </table>
   </div>
@@ -21,15 +19,28 @@
 <script>
 import {postsService} from '../services/PostsService'
 export default {
-  name: 'AppPosts',
+  name: 'SinglePost',
+ 
   data(){
     return {
-      posts: []
+       
+      post: {   }
     }
   },
-  async created() {
-    this.posts = await postsService.getPosts()
-  },
+  async  created(){
+                 this.post = await postsService.getAPost(this.$route.params.id)
+           console.log(this.post);
+       
+   },
+   methods: {
+       getPost(){
+           
+           
+
+           
+       }
+   }
+
 
 }
 </script>
