@@ -15,6 +15,7 @@
 
     <button type="submit" class="btn btn-primary">Add Post</button>
     </form> 
+    <button @click="resetFrom" type="submit" class="btn btn-primary">reset form</button>
   </div>
 </template>
 
@@ -36,6 +37,10 @@ export default {
       Add(){
           postsService.addPost(this.post);
           this.$router.push('posts')
+      },
+      resetFrom(){
+          this.post= {}
+      
       }
   }
 
