@@ -6,29 +6,48 @@
       <th>title</th>
       <th>text</th>
       <th></th>
+      <th>comment</th>
     </tr>
     <tr>
       <td>{{post.title}}</td>
       <td>{{post.text}}</td>
+      <td>comments number: {{post.comments.length}}</td>
+      <td>
+        <tr v-for="comment in post.comments" :key="comment.id">
+          <td>{{comment.text}}</td>
+        </tr>
+      </td>
 
     </tr>
   </table>
+    <AddComponent @commentAdded="addAComment"></AddComponent>
+
   </div>
 </template>
 
 <script>
+import AddComponent from './AddComment'
 import {postsService} from '../services/PostsService'
 export default {
   name: 'SinglePost',
+   components: {
+     AddComponent
+ },
  
   data(){
     return {
        
-      post: {   }
+      post: {   },
+
     }
   },
   async  created(){
         this.post = await postsService.getAPost(this.$route.params.id)
+   },
+   methods: {
+     addAComment(comment){
+       postsService.addAComment(this.post.id, comment)
+     }
    }
 
 

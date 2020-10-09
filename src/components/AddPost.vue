@@ -23,18 +23,15 @@
     </form> 
     <button @click="resetFrom" type="submit" class="btn btn-primary">reset form</button>
 
-    <AddComponent></AddComponent>
   </div>
 </template>
 
 <script>
-import AddComponent from './AddComment'
+
 import {postsService} from '../services/PostsService'
 export default {
   name: 'AddPost',
- components: {
-     AddComponent
- },
+
   data(){
     return {
        post: {

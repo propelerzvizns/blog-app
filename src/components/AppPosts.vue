@@ -6,6 +6,8 @@
       <th>title</th>
       <th>text</th>
       <th></th>
+      <th></th>
+      <th></th>
     </tr>
     <tr v-for="post in posts" :key="post.id">
       <td>{{post.title}}</td>
