@@ -11,10 +11,13 @@
     <tr>
       <td>{{post.title}}</td>
       <td>{{post.text}}</td>
-      <td>comments number: {{post.comments.length}}</td>
+      <td v-if="post.comments.length">comments number: {{post.comments.length}}</td>
+      <td v-else>no comments</td>
       <td>
         <tr v-for="comment in post.comments" :key="comment.id">
           <td>{{comment.text}}</td>
+          <td>{{comment.createdAt | humanFormatDate}}</td>
+          
         </tr>
       </td>
 
@@ -26,6 +29,8 @@
 </template>
 
 <script>
+
+
 import AddComponent from './AddComment'
 import {postsService} from '../services/PostsService'
 export default {
@@ -33,6 +38,7 @@ export default {
    components: {
      AddComponent
  },
+
  
   data(){
     return {

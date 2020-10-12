@@ -5,6 +5,7 @@
     <tr>
       <th>title</th>
       <th>text</th>
+      <th>created at</th>
       <th></th>
       <th></th>
       <th></th>
@@ -12,6 +13,8 @@
     <tr v-for="post in posts" :key="post.id">
       <td>{{post.title}}</td>
       <td>{{post.text}}</td>
+      <td>{{post.createdAt | formatDate}}</td>
+   
       <td>
         <router-link :to="{ name: 'post', params: { id: post.id }}">View Post</router-link>
       </td>
@@ -19,7 +22,7 @@
         <router-link :to="{ name: 'edit-post', params: { id: post.id }}">Edit Post</router-link>
       </td>
       <td>
-        <!-- <router-link :to="{ name: 'delete-post', params: { id: post.id }}">Delete Post</router-link> -->
+    
         <button @click="deletePost(post)">delete Post</button>
       </td>
     </tr>
@@ -31,6 +34,7 @@
 import {postsService} from '../services/PostsService'
 export default {
   name: 'AppPosts',
+
   data(){
     return {
       posts: []
